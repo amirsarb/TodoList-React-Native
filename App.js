@@ -1,31 +1,43 @@
 import React, { useState } from "react";
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View, Button, TextInput } from "react-native";
+
+import {
+  StyleSheet,
+  Text,
+  View,
+  TextInput,
+  Button,
+  ScrollView,
+  FlatList,
+} from "react-native";
+import TaskView from "./components/TaskView";
 
 export default function App() {
   const [currentTask, setcurrentTask] = useState("");
   const [taskList, setTaskList] = useState([]);
-  const addTask = () => {
-    setTaskList((taskList) => [...taskList, currentTask]);
-  };
+  function addTaskToList() {
+    if (currentTask.length > 0)
+      setTaskList((taskList) => [
+        ...taskList,
+        { key: Math.random.toString, value: currentTask },
+      ]);
+  }
   return (
     <View style={styles.screen}>
       <View style={styles.inputContainer}>
         <TextInput
-          style={styles.input}
-          placeholder="type here"
           onChangeText={setcurrentTask}
           value={currentTask}
+          placeholder="Type here"
+          style={styles.input}
         />
-        <Button title="Add" onPress={addTask} />
+        <Button title="+Add" onPress={addTaskToList} />
+      </View>
 
-        <StatusBar style="auto" />
-      </View>
-      <View>
-        {taskList.map((task) => (
-          <Text key={task}>{task}</Text>
-        ))}
-      </View>
+      <FlatList
+        keyExtractor={(item, index) => item.key}
+        data={taskList}
+        renderItem={(data) => <TaskView item={data.item.value} />}
+      />
     </View>
   );
 }
