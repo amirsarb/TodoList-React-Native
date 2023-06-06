@@ -4,7 +4,7 @@
 <h2 style="">Goals:</h2>
   <ul>
   <li>
-Woking with Hooks
+Working with Hooks
 
   </li>
   <li>
@@ -12,17 +12,6 @@ Woking with Hooks
   </li>
     
    </ul>
-
-  <p>
-    Screenshot:
-  </p>
-
-  <a href="">
-    <img
-      alt="BoxingGame - Vue.JS"
-      src="screenshot.jpg"
-    />
-  </a>
 </div>
 
 <hr />
