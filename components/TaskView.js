@@ -1,15 +1,31 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity, Alert } from "react-native";
 
-const TaskView = (props) => {
+export default function TaskView(props) {
+  const createTwoButtonAlert = (key, item) =>
+    Alert.alert("Delete " + item, "Are you sure?", [
+      {
+        text: "Cancel",
+        onPress: () => console.log("Cancel Pressed"),
+        style: "cancel",
+      },
+      { text: "OK", onPress: () => props.deleteTask(key) },
+    ]);
+
+  // function deleteTask(){
+  //   return props.
+  // }
   return (
-    <View style={styles.taskList}>
-      <Text>{props.item}</Text>
-    </View>
+    <TouchableOpacity
+      key={props.keys}
+      onLongPress={() => createTwoButtonAlert(props.keys, props.item)}
+    >
+      <View style={styles.taskList}>
+        <Text>{props.item}</Text>
+      </View>
+    </TouchableOpacity>
   );
-};
-
-export default TaskView;
+}
 
 const styles = StyleSheet.create({
   taskList: {
