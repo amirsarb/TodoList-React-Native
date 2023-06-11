@@ -10,7 +10,6 @@ export default function App() {
 
   function deleteItem(keys) {
     setTaskList(taskList.filter((data) => data.keys !== keys));
-    // console.log(keys);
   }
   function addTaskToList(currentTask) {
     if (currentTask.length > 0) {
