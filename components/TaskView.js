@@ -21,7 +21,7 @@ export default function TaskView(props) {
       onLongPress={() => createTwoButtonAlert(props.keys, props.item)}
     >
       <View style={styles.taskList}>
-        <Text>{props.item}</Text>
+        <Text key={props.keys}>{props.item}</Text>
       </View>
     </TouchableOpacity>
   );
